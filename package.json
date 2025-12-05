@@ -1,0 +1,15 @@
+{
+  "name": "devfactory-v5",
+  "version": "5.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:server": "npm run dev --workspace=@devfactory/server",
+    "dev:dashboard": "npm run dev --workspace=@devfactory/dashboard",
+    "build": "npm run build --workspaces",
+    "start:server": "npm run start --workspace=@devfactory/server"
+  },
+  "devDependencies": {}
+}

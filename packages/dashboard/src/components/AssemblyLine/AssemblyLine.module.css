@@ -1,0 +1,227 @@
+/* ============================================
+   AssemblyLine Container
+   ============================================ */
+
+.assemblyLineContainer {
+  width: 100%;
+  max-width: 900px;
+  height: 400px;
+  background: #1a1a2e;
+  border: 1px solid #2a2a4e;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.assemblyLineSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ============================================
+   Stations
+   ============================================ */
+
+.station {
+  transition: all 0.3s ease;
+}
+
+.station:hover {
+  opacity: 0.9;
+}
+
+.stationBox {
+  transition: all 0.3s ease;
+}
+
+.stationBoxActive {
+  animation: stationPulse 2s ease-in-out infinite;
+}
+
+@keyframes stationPulse {
+  0%, 100% {
+    stroke-opacity: 1;
+  }
+  50% {
+    stroke-opacity: 0.6;
+  }
+}
+
+.workerBadge {
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.statusBarActive {
+  animation: statusGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes statusGlow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   Spec Cars
+   ============================================ */
+
+.specCar {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.specCar:hover {
+  transform: scale(1.05);
+}
+
+.carBody {
+  transition: all 0.3s ease;
+}
+
+.carBodyActive {
+  animation: carGlow 2s ease-in-out infinite;
+}
+
+@keyframes carGlow {
+  0%, 100% {
+    stroke-opacity: 1;
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  50% {
+    stroke-opacity: 0.7;
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+}
+
+.progressBarActive {
+  animation: progressShimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes progressShimmer {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.activeDot {
+  animation: dotPulse 1s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 1;
+    r: 3;
+  }
+  50% {
+    opacity: 0.4;
+    r: 5;
+  }
+}
+
+/* ============================================
+   Connections
+   ============================================ */
+
+.connections {
+  pointer-events: none;
+}
+
+.connectionActive {
+  animation: connectionPulse 2s ease-in-out infinite;
+}
+
+@keyframes connectionPulse {
+  0%, 100% {
+    stroke-width: 2;
+    opacity: 1;
+  }
+  50% {
+    stroke-width: 3;
+    opacity: 0.8;
+  }
+}
+
+.flowDot1,
+.flowDot2,
+.flowDot3 {
+  opacity: 0.8;
+  filter: drop-shadow(0 0 3px #60a5fa);
+}
+
+/* ============================================
+   Groups
+   ============================================ */
+
+.stationsGroup {
+  /* Stations are rendered first, below cars */
+}
+
+.carsGroup {
+  /* Cars are rendered on top of stations */
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+  .assemblyLineContainer {
+    height: 300px;
+  }
+}
+
+/* ============================================
+   Theme-specific styles
+   ============================================ */
+
+/* Station colors are applied inline via JavaScript */
+/* database: #8b5cf6 (purple) */
+/* backend: #3b82f6 (blue) */
+/* frontend: #22c55e (green) */
+/* testing: #f59e0b (orange) */
+
+/* ============================================
+   Accessibility
+   ============================================ */
+
+.station[role="button"],
+.specCar[role="button"] {
+  cursor: pointer;
+  outline: none;
+}
+
+.station[role="button"]:focus,
+.specCar[role="button"]:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Performance optimizations
+   ============================================ */
+
+.specCar,
+.station {
+  /* Use GPU acceleration for smooth animations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}

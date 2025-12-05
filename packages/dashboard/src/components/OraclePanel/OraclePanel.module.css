@@ -1,0 +1,401 @@
+/* Oracle Panel Container */
+.panel {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #667eea, transparent);
+  opacity: 0.5;
+}
+
+/* Header */
+.header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* Oracle Status Container */
+.statusContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+/* Eye Container */
+.eyeContainer {
+  flex-shrink: 0;
+  width: 120px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* Eye animations based on status */
+.statusWatching {
+  color: #667eea;
+}
+
+.statusWatching .eyeOutline {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.statusWatching .pupil {
+  animation: watch 4s ease-in-out infinite;
+}
+
+.statusIntervening {
+  color: #f56565;
+}
+
+.statusIntervening .eye {
+  animation: glow 1s ease-in-out infinite;
+}
+
+.statusIntervening .glowRing {
+  animation: expandRing 1.5s ease-out infinite;
+}
+
+.statusIdle {
+  color: #718096;
+}
+
+.statusIdle .eye {
+  opacity: 0.5;
+}
+
+/* Status animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes watch {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px currentColor);
+  }
+}
+
+@keyframes expandRing {
+  0% {
+    r: 35;
+    opacity: 0.5;
+  }
+  100% {
+    r: 50;
+    opacity: 0;
+  }
+}
+
+/* Status Text */
+.statusText {
+  flex: 1;
+}
+
+.statusMain {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.statusTime {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Statistics */
+.stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.statValue {
+  font-size: 32px;
+  font-weight: 700;
+  color: #667eea;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statDivider {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 300;
+}
+
+/* Interventions Section */
+.interventionsSection {
+  margin-top: 24px;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Intervention List */
+.interventionList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.interventionList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.interventionList::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.interventionList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.interventionList::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+}
+
+.emptyIcon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.emptyText {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 4px;
+}
+
+.emptySubtext {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+}
+
+/* Intervention Item */
+.interventionItem {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.interventionItem:hover {
+  background: rgba(0, 0, 0, 0.3);
+  transform: translateX(2px);
+}
+
+/* Intervention Icon */
+.interventionIcon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 18px;
+}
+
+.typeGuidance {
+  background: rgba(237, 242, 67, 0.1);
+  border: 1px solid rgba(237, 242, 67, 0.3);
+}
+
+.typeTakeover {
+  background: rgba(245, 101, 101, 0.1);
+  border: 1px solid rgba(245, 101, 101, 0.3);
+}
+
+.typeReassign {
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.typeSkip {
+  background: rgba(113, 128, 150, 0.1);
+  border: 1px solid rgba(113, 128, 150, 0.3);
+}
+
+/* Intervention Content */
+.interventionContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.interventionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.interventionType {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.interventionTarget {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.interventionReason {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.interventionFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.interventionStatus {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.statusPending {
+  color: #f6ad55;
+  background: rgba(246, 173, 85, 0.1);
+  border-left-color: #f6ad55;
+}
+
+.statusExecuting {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  border-left-color: #667eea;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.statusCompleted {
+  color: #48bb78;
+  background: rgba(72, 187, 120, 0.1);
+  border-left-color: #48bb78;
+}
+
+.statusFailed {
+  color: #f56565;
+  background: rgba(245, 101, 101, 0.1);
+  border-left-color: #f56565;
+}
+
+.interventionTime {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+}

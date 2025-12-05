@@ -1,0 +1,176 @@
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  position: relative;
+  padding-top: 70px; /* Account for fixed header height */
+}
+
+.dashboardContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Section titles */
+.sectionTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+/* Assembly Line Section (main visual) */
+.assemblySection {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Panels Row (Workers + Oracle side by side) */
+.panelsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.workerSection,
+.oracleSection {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Activity Feed Section */
+.activitySection {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Disconnected Overlay */
+.disconnectedOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10, 10, 15, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.disconnectedMessage {
+  text-align: center;
+  padding: 3rem;
+  background-color: var(--color-bg-secondary);
+  border: 2px solid var(--color-error);
+  border-radius: 16px;
+  max-width: 400px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.disconnectedIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.disconnectedMessage h2 {
+  font-size: 1.5rem;
+  color: var(--color-error);
+  margin-bottom: 0.5rem;
+}
+
+.disconnectedMessage p {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .dashboardContent {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .panelsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .assemblySection {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContent {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .assemblySection,
+  .workerSection,
+  .oracleSection,
+  .activitySection {
+    padding: 1rem;
+  }
+
+  .assemblySection {
+    min-height: 300px;
+  }
+
+  .workerSection,
+  .oracleSection {
+    min-height: 250px;
+  }
+
+  .activitySection {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboardContent {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 0.75rem;
+  }
+}
