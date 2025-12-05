@@ -1,0 +1,466 @@
+version: "4.5"
+spec: phase-2-factory-floor
+generated: 2024-12-05T09:00:00Z
+
+summary:
+  total_tasks: 32
+  layers:
+    database: 0
+    backend: 8
+    frontend: 20
+    testing: 4
+  parallel_batches: 12
+
+tasks:
+  # ============================================
+  # BACKEND LAYER (Server Enhancements)
+  # ============================================
+
+  - id: "1.1"
+    title: "Add dashboard state transformer"
+    layer: backend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "1.2"
+    title: "Create spec aggregation endpoint"
+    layer: backend
+    depends_on: ["1.1"]
+    parallel_batch: 2
+
+  - id: "1.3"
+    title: "Create worker details endpoint"
+    layer: backend
+    depends_on: ["1.1"]
+    parallel_batch: 2
+
+  - id: "1.4"
+    title: "Add Oracle status endpoint"
+    layer: backend
+    depends_on: ["1.1"]
+    parallel_batch: 2
+
+  - id: "1.5"
+    title: "Enhance WebSocket typed events"
+    layer: backend
+    depends_on: ["1.1"]
+    parallel_batch: 3
+
+  - id: "1.6"
+    title: "Add activity event buffering"
+    layer: backend
+    depends_on: ["1.5"]
+    parallel_batch: 4
+
+  - id: "1.7"
+    title: "Implement health check endpoint"
+    layer: backend
+    depends_on: ["1.1"]
+    parallel_batch: 2
+
+  - id: "1.8"
+    title: "Add CORS configuration"
+    layer: backend
+    depends_on: ["1.1"]
+    parallel_batch: 2
+
+  # ============================================
+  # FRONTEND LAYER - Project Setup
+  # ============================================
+
+  - id: "2.1"
+    title: "Initialize React + TypeScript with Vite"
+    layer: frontend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "2.2"
+    title: "Configure TypeScript, ESLint, CSS modules"
+    layer: frontend
+    depends_on: ["2.1"]
+    parallel_batch: 2
+
+  - id: "2.3"
+    title: "Set up Socket.io-client connection"
+    layer: frontend
+    depends_on: ["2.2", "1.5"]
+    parallel_batch: 4
+
+  - id: "2.4"
+    title: "Create theme constants"
+    layer: frontend
+    depends_on: ["2.2"]
+    parallel_batch: 3
+
+  - id: "2.5"
+    title: "Create shared TypeScript interfaces"
+    layer: frontend
+    depends_on: ["2.2", "1.1"]
+    parallel_batch: 3
+
+  # ============================================
+  # FRONTEND LAYER - Core Layout
+  # ============================================
+
+  - id: "3.1"
+    title: "Create App shell with layout"
+    layer: frontend
+    depends_on: ["2.4", "2.5"]
+    parallel_batch: 4
+
+  - id: "3.2"
+    title: "Create Header component"
+    layer: frontend
+    depends_on: ["3.1"]
+    parallel_batch: 5
+
+  - id: "3.3"
+    title: "Create Footer component"
+    layer: frontend
+    depends_on: ["3.1"]
+    parallel_batch: 5
+
+  - id: "3.4"
+    title: "Create responsive grid layout"
+    layer: frontend
+    depends_on: ["3.1"]
+    parallel_batch: 5
+
+  # ============================================
+  # FRONTEND LAYER - Assembly Line
+  # ============================================
+
+  - id: "4.1"
+    title: "Create AssemblyLine container"
+    layer: frontend
+    depends_on: ["3.4"]
+    parallel_batch: 6
+
+  - id: "4.2"
+    title: "Create Station component"
+    layer: frontend
+    depends_on: ["4.1"]
+    parallel_batch: 7
+
+  - id: "4.3"
+    title: "Create SpecCar component"
+    layer: frontend
+    depends_on: ["4.1"]
+    parallel_batch: 7
+
+  - id: "4.4"
+    title: "Create connector lines (SVG)"
+    layer: frontend
+    depends_on: ["4.2"]
+    parallel_batch: 8
+
+  - id: "4.5"
+    title: "Implement station progress indicators"
+    layer: frontend
+    depends_on: ["4.2"]
+    parallel_batch: 8
+
+  - id: "4.6"
+    title: "Implement car movement animation"
+    layer: frontend
+    depends_on: ["4.3", "4.4"]
+    parallel_batch: 9
+
+  - id: "4.7"
+    title: "Create ParallelStation component"
+    layer: frontend
+    depends_on: ["4.1"]
+    parallel_batch: 7
+
+  - id: "4.8"
+    title: "Implement parallel spec positioning"
+    layer: frontend
+    depends_on: ["4.7", "4.6"]
+    parallel_batch: 10
+
+  # ============================================
+  # FRONTEND LAYER - Progress Components
+  # ============================================
+
+  - id: "5.1"
+    title: "Create OverallProgressBar component"
+    layer: frontend
+    depends_on: ["3.4"]
+    parallel_batch: 6
+
+  - id: "5.2"
+    title: "Create SpecProgressList component"
+    layer: frontend
+    depends_on: ["3.4"]
+    parallel_batch: 6
+
+  - id: "5.3"
+    title: "Create SpecProgressItem"
+    layer: frontend
+    depends_on: ["5.2"]
+    parallel_batch: 7
+
+  - id: "5.4"
+    title: "Implement percentage calculations"
+    layer: frontend
+    depends_on: ["5.1", "5.3"]
+    parallel_batch: 8
+
+  # ============================================
+  # FRONTEND LAYER - Worker Panel
+  # ============================================
+
+  - id: "6.1"
+    title: "Create WorkerPanel container"
+    layer: frontend
+    depends_on: ["3.4"]
+    parallel_batch: 6
+
+  - id: "6.2"
+    title: "Create WorkerCard component"
+    layer: frontend
+    depends_on: ["6.1"]
+    parallel_batch: 7
+
+  - id: "6.3"
+    title: "Implement worker status styling"
+    layer: frontend
+    depends_on: ["6.2"]
+    parallel_batch: 8
+
+  - id: "6.4"
+    title: "Add worker click handler"
+    layer: frontend
+    depends_on: ["6.3"]
+    parallel_batch: 9
+
+  - id: "6.5"
+    title: "Create WorkerDetailModal"
+    layer: frontend
+    depends_on: ["6.4", "9.1"]
+    parallel_batch: 10
+
+  # ============================================
+  # FRONTEND LAYER - Oracle Panel
+  # ============================================
+
+  - id: "7.1"
+    title: "Create OraclePanel component"
+    layer: frontend
+    depends_on: ["3.4"]
+    parallel_batch: 6
+
+  - id: "7.2"
+    title: "Create OracleStatusIndicator"
+    layer: frontend
+    depends_on: ["7.1"]
+    parallel_batch: 7
+
+  - id: "7.3"
+    title: "Create RecentInterventionsList"
+    layer: frontend
+    depends_on: ["7.1"]
+    parallel_batch: 7
+
+  - id: "7.4"
+    title: "Create InterventionItem component"
+    layer: frontend
+    depends_on: ["7.3"]
+    parallel_batch: 8
+
+  # ============================================
+  # FRONTEND LAYER - Activity Feed
+  # ============================================
+
+  - id: "8.1"
+    title: "Create ActivityFeed container"
+    layer: frontend
+    depends_on: ["3.4"]
+    parallel_batch: 6
+
+  - id: "8.2"
+    title: "Create ActivityItem component"
+    layer: frontend
+    depends_on: ["8.1"]
+    parallel_batch: 7
+
+  - id: "8.3"
+    title: "Implement auto-scroll"
+    layer: frontend
+    depends_on: ["8.2"]
+    parallel_batch: 8
+
+  - id: "8.4"
+    title: "Add timestamp formatting"
+    layer: frontend
+    depends_on: ["8.2"]
+    parallel_batch: 8
+
+  # ============================================
+  # FRONTEND LAYER - Modals & Interactions
+  # ============================================
+
+  - id: "9.1"
+    title: "Create Modal wrapper component"
+    layer: frontend
+    depends_on: ["3.4"]
+    parallel_batch: 6
+
+  - id: "9.2"
+    title: "Create SpecDetailModal"
+    layer: frontend
+    depends_on: ["9.1"]
+    parallel_batch: 7
+
+  - id: "9.3"
+    title: "Create StationDetailModal"
+    layer: frontend
+    depends_on: ["9.1"]
+    parallel_batch: 7
+
+  - id: "9.4"
+    title: "Implement all click handlers"
+    layer: frontend
+    depends_on: ["9.2", "9.3", "6.5"]
+    parallel_batch: 11
+
+  # ============================================
+  # FRONTEND LAYER - State Management
+  # ============================================
+
+  - id: "10.1"
+    title: "Create useWebSocket hook"
+    layer: frontend
+    depends_on: ["2.3"]
+    parallel_batch: 5
+
+  - id: "10.2"
+    title: "Create useDashboardState hook"
+    layer: frontend
+    depends_on: ["10.1", "2.5"]
+    parallel_batch: 6
+
+  - id: "10.3"
+    title: "Implement state updates from WebSocket"
+    layer: frontend
+    depends_on: ["10.2"]
+    parallel_batch: 7
+
+  - id: "10.4"
+    title: "Add connection status handling"
+    layer: frontend
+    depends_on: ["10.3"]
+    parallel_batch: 8
+
+  # ============================================
+  # TESTING LAYER
+  # ============================================
+
+  - id: "11.1"
+    title: "Unit tests for state transformation"
+    layer: testing
+    depends_on: ["1.1"]
+    parallel_batch: 3
+
+  - id: "11.2"
+    title: "Component tests for AssemblyLine"
+    layer: testing
+    depends_on: ["4.8"]
+    parallel_batch: 11
+
+  - id: "11.3"
+    title: "Component tests for WorkerCard"
+    layer: testing
+    depends_on: ["6.3"]
+    parallel_batch: 9
+
+  - id: "11.4"
+    title: "E2E test for dashboard"
+    layer: testing
+    depends_on: ["9.4", "10.4"]
+    parallel_batch: 12
+
+execution_order:
+  - batch: 1
+    tasks: ["1.1", "2.1"]
+    workers: [df-backend, df-frontend]
+    parallel: true
+
+  - batch: 2
+    tasks: ["1.2", "1.3", "1.4", "1.7", "1.8", "2.2"]
+    workers: [df-backend, df-frontend]
+    parallel: true
+
+  - batch: 3
+    tasks: ["2.4", "2.5", "11.1"]
+    workers: [df-frontend, df-testing]
+    parallel: true
+
+  - batch: 4
+    tasks: ["1.5", "2.3", "3.1"]
+    workers: [df-backend, df-frontend]
+    parallel: true
+
+  - batch: 5
+    tasks: ["1.6", "3.2", "3.3", "3.4", "10.1"]
+    workers: [df-backend, df-frontend]
+    parallel: true
+
+  - batch: 6
+    tasks: ["4.1", "5.1", "5.2", "6.1", "7.1", "8.1", "9.1", "10.2"]
+    workers: [df-frontend]
+    parallel: true
+
+  - batch: 7
+    tasks: ["4.2", "4.3", "4.7", "5.3", "6.2", "7.2", "7.3", "8.2", "9.2", "9.3", "10.3"]
+    workers: [df-frontend]
+    parallel: true
+
+  - batch: 8
+    tasks: ["4.4", "4.5", "5.4", "6.3", "7.4", "8.3", "8.4", "10.4"]
+    workers: [df-frontend]
+    parallel: true
+
+  - batch: 9
+    tasks: ["4.6", "6.4", "11.3"]
+    workers: [df-frontend, df-testing]
+    parallel: true
+
+  - batch: 10
+    tasks: ["4.8", "6.5"]
+    workers: [df-frontend]
+    parallel: true
+
+  - batch: 11
+    tasks: ["9.4", "11.2"]
+    workers: [df-frontend, df-testing]
+    parallel: true
+
+  - batch: 12
+    tasks: ["11.4"]
+    workers: [df-testing]
+
+worker_assignments:
+  df-backend:
+    tasks: ["1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8"]
+
+  df-frontend:
+    tasks: ["2.1", "2.2", "2.3", "2.4", "2.5",
+            "3.1", "3.2", "3.3", "3.4",
+            "4.1", "4.2", "4.3", "4.4", "4.5", "4.6", "4.7", "4.8",
+            "5.1", "5.2", "5.3", "5.4",
+            "6.1", "6.2", "6.3", "6.4", "6.5",
+            "7.1", "7.2", "7.3", "7.4",
+            "8.1", "8.2", "8.3", "8.4",
+            "9.1", "9.2", "9.3", "9.4",
+            "10.1", "10.2", "10.3", "10.4"]
+
+  df-testing:
+    tasks: ["11.1", "11.2", "11.3", "11.4"]
+
+notes:
+  - Backend tasks enhance existing dashboard/server.ts
+  - Frontend is new React app in packages/dashboard/
+  - Batch 6-7 have high parallelism (8-11 tasks)
+  - Testing can start once transformer is done (batch 3)
+  - E2E test requires full dashboard implementation

@@ -1,0 +1,344 @@
+version: "4.5"
+spec: phase-4-integration
+generated: 2024-12-05T10:00:00Z
+
+summary:
+  total_tasks: 24
+  layers:
+    database: 0
+    backend: 10
+    frontend: 12
+    testing: 2
+  parallel_batches: 10
+  depends_on: ["phase-1-enhanced-oracle", "phase-2-factory-floor", "phase-3-verification-theater"]
+
+tasks:
+  # ============================================
+  # BACKEND LAYER - Automatic Launch
+  # ============================================
+
+  - id: "1.1"
+    title: "Add browser auto-launch to release-the-beast command"
+    layer: backend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "1.2"
+    title: "Implement cross-platform browser opening"
+    layer: backend
+    depends_on: ["1.1"]
+    parallel_batch: 2
+
+  - id: "1.3"
+    title: "Add configuration for auto-open, browser choice, port"
+    layer: backend
+    depends_on: ["1.2"]
+    parallel_batch: 3
+
+  # ============================================
+  # BACKEND LAYER - Error Recovery
+  # ============================================
+
+  - id: "2.1"
+    title: "Implement dashboard server health check"
+    layer: backend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "2.2"
+    title: "Add automatic server restart on crash"
+    layer: backend
+    depends_on: ["2.1"]
+    parallel_batch: 2
+
+  - id: "2.3"
+    title: "Implement worker session recovery"
+    layer: backend
+    depends_on: ["2.2"]
+    parallel_batch: 3
+
+  - id: "2.4"
+    title: "Add Oracle auto-restart on failure"
+    layer: backend
+    depends_on: ["2.3"]
+    parallel_batch: 4
+
+  # ============================================
+  # BACKEND LAYER - Reporting
+  # ============================================
+
+  - id: "3.1"
+    title: "Create ReportGenerator class"
+    layer: backend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "3.2"
+    title: "Implement HTML report template with timeline"
+    layer: backend
+    depends_on: ["3.1"]
+    parallel_batch: 2
+
+  - id: "3.3"
+    title: "Add per-spec breakdown to report"
+    layer: backend
+    depends_on: ["3.2"]
+    parallel_batch: 3
+
+  - id: "3.4"
+    title: "Implement devfactory report CLI command"
+    layer: backend
+    depends_on: ["3.3"]
+    parallel_batch: 4
+
+  # ============================================
+  # BACKEND LAYER - Notifications
+  # ============================================
+
+  - id: "4.1"
+    title: "Implement desktop notification system"
+    layer: backend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "4.2"
+    title: "Add notification events for key milestones"
+    layer: backend
+    depends_on: ["4.1"]
+    parallel_batch: 2
+
+  # ============================================
+  # FRONTEND LAYER - Navigation Polish
+  # ============================================
+
+  - id: "5.1"
+    title: "Implement smooth spec modal animations"
+    layer: frontend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "5.2"
+    title: "Add Open Verification button to spec detail"
+    layer: frontend
+    depends_on: ["5.1"]
+    parallel_batch: 2
+
+  - id: "5.3"
+    title: "Create Back to Dashboard button in Theater"
+    layer: frontend
+    depends_on: ["5.2"]
+    parallel_batch: 3
+
+  - id: "5.4"
+    title: "Implement URL routing for deep links"
+    layer: frontend
+    depends_on: ["5.3"]
+    parallel_batch: 4
+
+  # ============================================
+  # FRONTEND LAYER - Completion Celebrations
+  # ============================================
+
+  - id: "6.1"
+    title: "Create ConfettiAnimation component"
+    layer: frontend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "6.2"
+    title: "Create CelebrationModal for build complete"
+    layer: frontend
+    depends_on: ["6.1"]
+    parallel_batch: 2
+
+  - id: "6.3"
+    title: "Add spec completion animation on assembly line"
+    layer: frontend
+    depends_on: ["6.2"]
+    parallel_batch: 3
+
+  - id: "6.4"
+    title: "Implement sound effects (configurable)"
+    layer: frontend
+    depends_on: ["6.3"]
+    parallel_batch: 4
+
+  # ============================================
+  # FRONTEND LAYER - Error States
+  # ============================================
+
+  - id: "7.1"
+    title: "Create ReconnectingOverlay component"
+    layer: frontend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "7.2"
+    title: "Implement graceful error boundaries"
+    layer: frontend
+    depends_on: ["7.1"]
+    parallel_batch: 2
+
+  - id: "7.3"
+    title: "Create StuckTaskPanel showing Oracle interventions"
+    layer: frontend
+    depends_on: ["7.2"]
+    parallel_batch: 3
+
+  # ============================================
+  # FRONTEND LAYER - Polish
+  # ============================================
+
+  - id: "8.1"
+    title: "Add skeleton loaders for initial load"
+    layer: frontend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "8.2"
+    title: "Improve assembly line animations"
+    layer: frontend
+    depends_on: ["8.1"]
+    parallel_batch: 2
+
+  - id: "8.3"
+    title: "Add progress number count-up animation"
+    layer: frontend
+    depends_on: ["8.2"]
+    parallel_batch: 3
+
+  - id: "8.4"
+    title: "Polish all micro-interactions"
+    layer: frontend
+    depends_on: ["8.3"]
+    parallel_batch: 4
+
+  # ============================================
+  # FRONTEND LAYER - Help & Onboarding
+  # ============================================
+
+  - id: "9.1"
+    title: "Create HelpPanel component"
+    layer: frontend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "9.2"
+    title: "Create OnboardingTour for first-time users"
+    layer: frontend
+    depends_on: ["9.1"]
+    parallel_batch: 2
+
+  - id: "9.3"
+    title: "Add tooltips to all status indicators"
+    layer: frontend
+    depends_on: ["9.2"]
+    parallel_batch: 3
+
+  - id: "9.4"
+    title: "Create What's this? hover hints"
+    layer: frontend
+    depends_on: ["9.3"]
+    parallel_batch: 4
+
+  # ============================================
+  # TESTING LAYER
+  # ============================================
+
+  - id: "10.1"
+    title: "E2E test for full flow (beast → dashboard → verification → report)"
+    layer: testing
+    depends_on: ["1.3", "2.4", "3.4", "4.2", "5.4", "6.4", "7.3", "8.4", "9.4"]
+    parallel_batch: 5
+
+  - id: "10.2"
+    title: "Resilience tests (crash recovery scenarios)"
+    layer: testing
+    depends_on: ["10.1"]
+    parallel_batch: 6
+
+execution_order:
+  - batch: 1
+    tasks: ["1.1", "2.1", "3.1", "4.1", "5.1", "6.1", "7.1", "8.1", "9.1"]
+    workers: [df-backend, df-frontend]
+    parallel: true
+    notes: "Maximum parallelism - all streams start independently"
+
+  - batch: 2
+    tasks: ["1.2", "2.2", "3.2", "4.2", "5.2", "6.2", "7.2", "8.2", "9.2"]
+    workers: [df-backend, df-frontend]
+    parallel: true
+    notes: "Second level of all streams"
+
+  - batch: 3
+    tasks: ["1.3", "2.3", "3.3", "5.3", "6.3", "7.3", "8.3", "9.3"]
+    workers: [df-backend, df-frontend]
+    parallel: true
+    notes: "Third level - notifications stream complete"
+
+  - batch: 4
+    tasks: ["2.4", "3.4", "5.4", "6.4", "8.4", "9.4"]
+    workers: [df-backend, df-frontend]
+    parallel: true
+    notes: "Fourth level - auto launch and error states complete"
+
+  - batch: 5
+    tasks: ["10.1"]
+    workers: [df-testing]
+    notes: "Full E2E test - requires all features complete"
+
+  - batch: 6
+    tasks: ["10.2"]
+    workers: [df-testing]
+    notes: "Resilience testing"
+
+worker_assignments:
+  df-backend:
+    tasks: ["1.1", "1.2", "1.3",
+            "2.1", "2.2", "2.3", "2.4",
+            "3.1", "3.2", "3.3", "3.4",
+            "4.1", "4.2"]
+
+  df-frontend:
+    tasks: ["5.1", "5.2", "5.3", "5.4",
+            "6.1", "6.2", "6.3", "6.4",
+            "7.1", "7.2", "7.3",
+            "8.1", "8.2", "8.3", "8.4",
+            "9.1", "9.2", "9.3", "9.4"]
+
+  df-testing:
+    tasks: ["10.1", "10.2"]
+
+notes:
+  - This phase requires ALL previous phases to be complete
+  - High parallelism in batches 1-4 (9 tasks each)
+  - Backend and frontend can work completely independently
+  - Testing only starts once all features are done
+  - Focus on polish and reliability, no new major features
+  - Desktop notifications may require OS-specific configuration
+
+integration_points:
+  from_phase_1:
+    - Oracle recovery (2.4) extends Oracle from Phase 1
+    - StuckTaskPanel (7.3) displays Oracle interventions
+
+  from_phase_2:
+    - All frontend tasks enhance Phase 2 dashboard
+    - Celebrations (6.x) trigger on Phase 2 completion events
+    - Polish (8.x) refines Phase 2 animations
+
+  from_phase_3:
+    - Theater navigation (5.2, 5.3) connects to Phase 3 Theater
+    - Full E2E test (10.1) verifies Phase 3 verification flow
+
+completion_criteria:
+  - Browser auto-opens when /release-the-beast runs
+  - System recovers gracefully from crashes
+  - HTML report generates with full timeline
+  - Desktop notifications appear for milestones
+  - All navigation flows smoothly with animations
+  - Celebrations display on completion
+  - Error states handled gracefully
+  - Onboarding tour guides new users
+  - Full E2E test passes
+  - Resilience tests confirm recovery
