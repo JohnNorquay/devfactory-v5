@@ -6,3 +6,13 @@ export { WorkerPanel } from './WorkerPanel';
 export { OraclePanel } from './OraclePanel';
 export { ActivityFeed } from './ActivityFeed';
 export { Theater } from './Theater';
+export { Celebration } from './Celebration';
+export { ErrorBoundary } from './ErrorBoundary';
+export { ConnectionStatus } from './ConnectionStatus';
+export {
+  AssemblyLineSkeleton,
+  WorkerCardSkeleton,
+  WorkerPanelSkeleton,
+  ActivityFeedSkeleton,
+  DashboardSkeleton,
+} from './LoadingSkeleton';

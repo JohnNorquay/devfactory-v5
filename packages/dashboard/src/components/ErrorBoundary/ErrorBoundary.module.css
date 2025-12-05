@@ -1,0 +1,150 @@
+.container {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #fef3f2 0%, #fee2e2 100%);
+}
+
+.content {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 48px;
+  box-shadow: 0 10px 40px rgba(239, 68, 68, 0.1);
+  text-align: center;
+}
+
+.iconContainer {
+  margin: 0 auto 24px;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  color: #dc2626;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 12px;
+}
+
+.message {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+.errorBox {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.errorMessage {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  color: #dc2626;
+  margin: 0;
+  word-break: break-word;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.retryButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.retryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+.retryButton:active {
+  transform: translateY(0);
+}
+
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.stackButton {
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stackButton:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.stackTrace {
+  margin-top: 24px;
+  text-align: left;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 24px;
+}
+
+.stackTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stackContent {
+  background: #1f2937;
+  color: #f3f4f6;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-x: auto;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

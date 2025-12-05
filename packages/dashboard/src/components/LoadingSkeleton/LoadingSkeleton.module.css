@@ -1,0 +1,213 @@
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #e5e7eb 0%,
+    #f3f4f6 50%,
+    #e5e7eb 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Assembly Line Skeleton */
+.assemblyLine {
+  padding: 24px;
+}
+
+.stationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.station {
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.stationIcon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+}
+
+.stationTitle {
+  height: 20px;
+  width: 70%;
+  margin-bottom: 8px;
+}
+
+.stationStatus {
+  height: 16px;
+  width: 50%;
+}
+
+/* Worker Card Skeleton */
+.workerCard {
+  padding: 16px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.workerHeader {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.workerAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.workerInfo {
+  flex: 1;
+}
+
+.workerName {
+  height: 18px;
+  width: 60%;
+  margin-bottom: 8px;
+}
+
+.workerRole {
+  height: 14px;
+  width: 40%;
+}
+
+.workerStats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statBar {
+  height: 8px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+/* Worker Panel Skeleton */
+.workerPanel {
+  padding: 24px;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.panelTitle {
+  height: 24px;
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.workerList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Activity Feed Skeleton */
+.activityFeed {
+  padding: 24px;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.feedTitle {
+  height: 24px;
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.activityList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.activityItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.activityIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.activityContent {
+  flex: 1;
+}
+
+.activityText {
+  height: 16px;
+  width: 80%;
+  margin-bottom: 8px;
+}
+
+.activityTime {
+  height: 12px;
+  width: 30%;
+}
+
+/* Dashboard Skeleton */
+.dashboard {
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.headerTitle {
+  height: 32px;
+  width: 200px;
+}
+
+.headerButton {
+  height: 40px;
+  width: 120px;
+  border-radius: 8px;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+  .panels {
+    grid-template-columns: 1fr;
+  }
+
+  .stationGrid {
+    grid-template-columns: 1fr;
+  }
+}
