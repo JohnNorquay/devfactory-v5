@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# DevFactory runtime
+.devfactory/beast/state.json
+.devfactory/oracle/guidance-*.md
+.devfactory/oracle/interventions.json
+.devfactory/oracle/oracle.log
+.devfactory/reports/
+
+# Test artifacts
+coverage/
+.playwright/
+test-results/
+
+# Temp
+tmp/
+temp/
+*.tmp

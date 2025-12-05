@@ -1,0 +1,43 @@
+project_name: "DevFactory v5.0 Factory Floor"
+version: "5.0.0"
+stack: "typescript-node-react"
+
+# Project structure
+frontend:
+  enabled: true
+  framework: "react"
+  port: 5555
+  directory: "packages/dashboard"
+
+backend:
+  enabled: true
+  framework: "express"
+  port: 5556
+  directory: "packages/core"
+
+database:
+  enabled: false  # No database for this project
+
+# Beast mode configuration
+orchestrator:
+  pollInterval: 30000
+  workerTimeout: 600000
+  maxRetries: 3
+
+workers:
+  database: "df-database"
+  backend: "df-backend"
+  frontend: "df-frontend"
+  testing: "df-testing"
+
+# Oracle configuration
+oracle:
+  enabled: true
+  model: "claude-opus-4-5-20251101"
+  checkInterval: 60000
+  stuckThreshold: 300000  # 5 minutes
+
+# Dashboard configuration
+dashboard:
+  port: 5555
+  theme: "factory-floor"

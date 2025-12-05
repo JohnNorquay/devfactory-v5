@@ -1,0 +1,388 @@
+version: "4.5"
+spec: phase-1-enhanced-oracle
+generated: 2024-12-05T08:30:00Z
+
+summary:
+  total_tasks: 24
+  layers:
+    database: 0
+    backend: 20
+    frontend: 0
+    testing: 4
+  parallel_batches: 10
+  target_location: "~/.claude/plugins/devfactory-distributed/src/oracle/"
+
+tasks:
+  # Batch 1: Foundation
+  - id: "1.1"
+    title: "Create types.ts with all Oracle TypeScript interfaces"
+    layer: backend
+    depends_on: []
+    parallel_batch: 1
+
+  - id: "1.2"
+    title: "Create OracleConfig interface with defaults and validation"
+    layer: backend
+    depends_on: ["1.1"]
+    parallel_batch: 2
+
+  - id: "1.3"
+    title: "Set up Oracle module directory structure"
+    layer: backend
+    depends_on: ["1.2"]
+    parallel_batch: 2
+
+  # Batch 3: Context Loader Start
+  - id: "2.1"
+    title: "Implement ContextLoader class with constructor"
+    layer: backend
+    depends_on: ["1.3"]
+    parallel_batch: 3
+
+  - id: "2.2"
+    title: "Implement loadProductDocs()"
+    layer: backend
+    depends_on: ["2.1"]
+    parallel_batch: 4
+
+  - id: "2.3"
+    title: "Implement loadSpecs()"
+    layer: backend
+    depends_on: ["2.1"]
+    parallel_batch: 4
+
+  - id: "2.4"
+    title: "Implement caching with file modification time tracking"
+    layer: backend
+    depends_on: ["2.2", "2.3"]
+    parallel_batch: 5
+
+  - id: "2.5"
+    title: "Implement refresh() - detect and reload changed files"
+    layer: backend
+    depends_on: ["2.4"]
+    parallel_batch: 5
+
+  - id: "2.6"
+    title: "Implement getSummary() - condensed context for API"
+    layer: backend
+    depends_on: ["2.4"]
+    parallel_batch: 5
+
+  - id: "2.7"
+    title: "Implement getTaskContext() - detailed task context"
+    layer: backend
+    depends_on: ["2.4"]
+    parallel_batch: 5
+
+  # Batch 4: Stuck Detector
+  - id: "3.1"
+    title: "Implement StuckDetector class with state manager"
+    layer: backend
+    depends_on: ["1.3"]
+    parallel_batch: 3
+
+  - id: "3.2"
+    title: "Implement detectExplicitStuck()"
+    layer: backend
+    depends_on: ["3.1"]
+    parallel_batch: 4
+
+  - id: "3.3"
+    title: "Implement detectImplicitStuck()"
+    layer: backend
+    depends_on: ["3.1"]
+    parallel_batch: 4
+
+  - id: "3.4"
+    title: "Implement detectHeartbeatMissing()"
+    layer: backend
+    depends_on: ["3.1"]
+    parallel_batch: 4
+
+  - id: "3.5"
+    title: "Implement classifyStuck()"
+    layer: backend
+    depends_on: ["3.2", "3.3", "3.4"]
+    parallel_batch: 5
+
+  - id: "3.6"
+    title: "Implement confidence scoring"
+    layer: backend
+    depends_on: ["3.5"]
+    parallel_batch: 6
+
+  # Batch 5-6: Intervention Engine
+  - id: "4.1"
+    title: "Implement InterventionEngine class"
+    layer: backend
+    depends_on: ["2.6", "3.5"]
+    parallel_batch: 6
+
+  - id: "4.2"
+    title: "Create prompts.ts with ORACLE_SYSTEM_PROMPT"
+    layer: backend
+    depends_on: ["4.1"]
+    parallel_batch: 7
+
+  - id: "4.3"
+    title: "Implement buildGuidancePrompt()"
+    layer: backend
+    depends_on: ["4.2"]
+    parallel_batch: 7
+
+  - id: "4.4"
+    title: "Implement decideStrategy()"
+    layer: backend
+    depends_on: ["4.1"]
+    parallel_batch: 7
+
+  - id: "4.5"
+    title: "Implement provideGuidance()"
+    layer: backend
+    depends_on: ["4.3", "4.4"]
+    parallel_batch: 8
+
+  - id: "4.6"
+    title: "Implement parseGuidanceResponse()"
+    layer: backend
+    depends_on: ["4.5"]
+    parallel_batch: 8
+
+  - id: "4.7"
+    title: "Implement escalate()"
+    layer: backend
+    depends_on: ["4.4"]
+    parallel_batch: 8
+
+  # Batch 6-7: Takeover Manager
+  - id: "5.1"
+    title: "Implement TakeoverManager class"
+    layer: backend
+    depends_on: ["4.1"]
+    parallel_batch: 7
+
+  - id: "5.2"
+    title: "Implement buildTakeoverPrompt()"
+    layer: backend
+    depends_on: ["5.1", "4.2"]
+    parallel_batch: 8
+
+  - id: "5.3"
+    title: "Implement takeover() main function"
+    layer: backend
+    depends_on: ["5.2"]
+    parallel_batch: 8
+
+  - id: "5.4"
+    title: "Implement takeover state management"
+    layer: backend
+    depends_on: ["5.3"]
+    parallel_batch: 9
+
+  - id: "5.5"
+    title: "Implement takeover completion"
+    layer: backend
+    depends_on: ["5.4"]
+    parallel_batch: 9
+
+  # Batch 6: Tracker (parallel with Intervention)
+  - id: "6.1"
+    title: "Implement InterventionTracker class"
+    layer: backend
+    depends_on: ["1.3"]
+    parallel_batch: 3
+
+  - id: "6.2"
+    title: "Implement record()"
+    layer: backend
+    depends_on: ["6.1"]
+    parallel_batch: 4
+
+  - id: "6.3"
+    title: "Implement updateOutcome()"
+    layer: backend
+    depends_on: ["6.2"]
+    parallel_batch: 5
+
+  - id: "6.4"
+    title: "Implement getStats()"
+    layer: backend
+    depends_on: ["6.2"]
+    parallel_batch: 5
+
+  - id: "6.5"
+    title: "Implement prune()"
+    layer: backend
+    depends_on: ["6.2"]
+    parallel_batch: 5
+
+  # Batch 8-9: Main Oracle
+  - id: "7.1"
+    title: "Refactor existing oracle.ts to use new components"
+    layer: backend
+    depends_on: ["4.6", "4.7", "5.5", "6.4"]
+    parallel_batch: 9
+
+  - id: "7.2"
+    title: "Implement start() with context and loop"
+    layer: backend
+    depends_on: ["7.1"]
+    parallel_batch: 9
+
+  - id: "7.3"
+    title: "Implement check() monitoring loop"
+    layer: backend
+    depends_on: ["7.2"]
+    parallel_batch: 9
+
+  - id: "7.4"
+    title: "Implement stop() with cleanup"
+    layer: backend
+    depends_on: ["7.2"]
+    parallel_batch: 9
+
+  - id: "7.5"
+    title: "Implement getStatus()"
+    layer: backend
+    depends_on: ["7.3"]
+    parallel_batch: 10
+
+  - id: "7.6"
+    title: "Implement manualIntervene()"
+    layer: backend
+    depends_on: ["7.3"]
+    parallel_batch: 10
+
+  # Batch 9-10: CLI
+  - id: "8.1"
+    title: "Update cli.ts to import enhanced Oracle"
+    layer: backend
+    depends_on: ["7.1"]
+    parallel_batch: 9
+
+  - id: "8.2"
+    title: "Implement oracle start command"
+    layer: backend
+    depends_on: ["8.1", "7.2"]
+    parallel_batch: 10
+
+  - id: "8.3"
+    title: "Implement oracle stop command"
+    layer: backend
+    depends_on: ["8.1", "7.4"]
+    parallel_batch: 10
+
+  - id: "8.4"
+    title: "Implement oracle status command"
+    layer: backend
+    depends_on: ["8.1", "7.5"]
+    parallel_batch: 10
+
+  - id: "8.5"
+    title: "Implement oracle intervene command"
+    layer: backend
+    depends_on: ["8.1", "7.6"]
+    parallel_batch: 10
+
+  - id: "8.6"
+    title: "Implement oracle history command"
+    layer: backend
+    depends_on: ["8.1", "6.4"]
+    parallel_batch: 10
+
+  # Batch 10: Testing
+  - id: "9.1"
+    title: "Create unit tests for ContextLoader"
+    layer: testing
+    depends_on: ["2.7"]
+    parallel_batch: 6
+
+  - id: "9.2"
+    title: "Create unit tests for StuckDetector"
+    layer: testing
+    depends_on: ["3.6"]
+    parallel_batch: 7
+
+  - id: "9.3"
+    title: "Create unit tests for InterventionTracker"
+    layer: testing
+    depends_on: ["6.5"]
+    parallel_batch: 6
+
+  - id: "9.4"
+    title: "Create integration test for full flow"
+    layer: testing
+    depends_on: ["7.6", "9.1", "9.2", "9.3"]
+    parallel_batch: 11
+
+execution_order:
+  - batch: 1
+    tasks: ["1.1"]
+    workers: [df-backend]
+
+  - batch: 2
+    tasks: ["1.2", "1.3"]
+    workers: [df-backend]
+
+  - batch: 3
+    tasks: ["2.1", "3.1", "6.1"]
+    workers: [df-backend]
+    parallel: true
+
+  - batch: 4
+    tasks: ["2.2", "2.3", "3.2", "3.3", "3.4", "6.2"]
+    workers: [df-backend]
+    parallel: true
+
+  - batch: 5
+    tasks: ["2.4", "2.5", "2.6", "2.7", "3.5", "6.3", "6.4", "6.5"]
+    workers: [df-backend]
+    parallel: true
+
+  - batch: 6
+    tasks: ["3.6", "4.1", "9.1", "9.3"]
+    workers: [df-backend, df-testing]
+    parallel: true
+
+  - batch: 7
+    tasks: ["4.2", "4.3", "4.4", "5.1", "9.2"]
+    workers: [df-backend, df-testing]
+    parallel: true
+
+  - batch: 8
+    tasks: ["4.5", "4.6", "4.7", "5.2", "5.3"]
+    workers: [df-backend]
+    parallel: true
+
+  - batch: 9
+    tasks: ["5.4", "5.5", "7.1", "7.2", "7.3", "7.4", "8.1"]
+    workers: [df-backend]
+    parallel: true
+
+  - batch: 10
+    tasks: ["7.5", "7.6", "8.2", "8.3", "8.4", "8.5", "8.6"]
+    workers: [df-backend]
+    parallel: true
+
+  - batch: 11
+    tasks: ["9.4"]
+    workers: [df-testing]
+
+worker_assignments:
+  df-backend:
+    tasks: ["1.1", "1.2", "1.3", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7",
+            "3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "4.1", "4.2", "4.3", "4.4",
+            "4.5", "4.6", "4.7", "5.1", "5.2", "5.3", "5.4", "5.5", "6.1", "6.2",
+            "6.3", "6.4", "6.5", "7.1", "7.2", "7.3", "7.4", "7.5", "7.6", "8.1",
+            "8.2", "8.3", "8.4", "8.5", "8.6"]
+
+  df-testing:
+    tasks: ["9.1", "9.2", "9.3", "9.4"]
+
+notes:
+  - This phase is backend-heavy with testing at the end
+  - No database or frontend work in this phase
+  - Maximum parallelism in batches 4-5 (6 tasks each)
+  - Testing can start once components are individually complete
+  - Integration test (9.4) must wait for all prior work
