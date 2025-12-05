@@ -5,3 +5,4 @@ export { AssemblyLine } from './AssemblyLine';
 export { WorkerPanel } from './WorkerPanel';
 export { OraclePanel } from './OraclePanel';
 export { ActivityFeed } from './ActivityFeed';
+export { Theater } from './Theater';

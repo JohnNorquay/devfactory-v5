@@ -1,0 +1,791 @@
+/* Theater Container - Full Screen Layout */
+.theater {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.headerContent {
+  flex: 1;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+.closeButton {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Main Content Area */
+.content {
+  display: flex;
+  flex: 1;
+  gap: 24px;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.mainView {
+  flex: 0 0 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.sidebar {
+  flex: 0 0 calc(30% - 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+/* Browser View */
+.browserView {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.browserFrame {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #000000;
+}
+
+/* Empty Browser State */
+.emptyBrowser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  text-align: center;
+}
+
+.emptyBrowserIcon {
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 24px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.emptyBrowserText {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 8px;
+}
+
+.emptyBrowserSubtext {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Screenshot Container */
+.screenshotContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screenshot {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.screenshotLoaded {
+  opacity: 1;
+}
+
+.screenshotLoading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Cursor Overlay */
+.cursor {
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-2px, -2px);
+  animation: pulse 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 4px rgba(102, 126, 234, 0.8));
+}
+
+/* Theater Controls */
+.theaterControls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 24px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.controlsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.controlsLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Scenario Select */
+.scenarioSelect {
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  min-width: 200px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scenarioSelect:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.scenarioSelect:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.scenarioSelect option {
+  background: #1a1a2e;
+  color: #ffffff;
+}
+
+/* Playback Controls */
+.playbackControls {
+  display: flex;
+  gap: 8px;
+}
+
+.controlButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.controlButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.controlButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.startButton {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  border-color: rgba(72, 187, 120, 0.5);
+}
+
+.startButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+  box-shadow: 0 4px 16px rgba(72, 187, 120, 0.4);
+}
+
+.pauseButton {
+  background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);
+  border-color: rgba(246, 173, 85, 0.5);
+}
+
+.pauseButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+  box-shadow: 0 4px 16px rgba(246, 173, 85, 0.4);
+}
+
+.stopButton {
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  border-color: rgba(245, 101, 101, 0.5);
+}
+
+.stopButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+  box-shadow: 0 4px 16px rgba(245, 101, 101, 0.4);
+}
+
+/* Speed Controls */
+.speedControls {
+  display: flex;
+  gap: 4px;
+}
+
+.speedButton {
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.speedButton:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.speedButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.speedButtonActive {
+  background: rgba(102, 126, 234, 0.3);
+  border-color: #667eea;
+  color: #ffffff;
+}
+
+/* Status Indicator */
+.statusIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  padding-left: 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.statusDotRunning {
+  background: #48bb78;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.statusText {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+/* Scenario Steps Panel */
+.scenarioSteps {
+  flex: 0 0 auto;
+  max-height: 50%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  overflow: hidden;
+}
+
+.sectionHeader {
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.scenarioName {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+/* Empty Steps State */
+.emptySteps {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.emptyStepsIcon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.3;
+}
+
+.emptyStepsText {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 4px;
+}
+
+.emptyStepsSubtext {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Steps List */
+.stepsList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-bottom: 16px;
+}
+
+.stepsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.stepsList::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.stepsList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.stepsList::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Step Item */
+.stepItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.stepItemCurrent {
+  background: rgba(102, 126, 234, 0.15);
+  border-left-color: #667eea;
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+}
+
+.stepItemPast {
+  opacity: 0.6;
+}
+
+.stepItemFuture {
+  opacity: 0.4;
+}
+
+.stepItemCompleted {
+  border-left-color: #48bb78;
+}
+
+.stepItemFailed {
+  border-left-color: #f56565;
+  background: rgba(245, 101, 101, 0.1);
+}
+
+/* Step Icon */
+.stepIcon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.stepIconPending {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.stepIconRunning {
+  background: rgba(102, 126, 234, 0.2);
+  border: 2px solid #667eea;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.stepIconCompleted {
+  background: rgba(72, 187, 120, 0.2);
+  color: #48bb78;
+  border: 2px solid #48bb78;
+}
+
+.stepIconFailed {
+  background: rgba(245, 101, 101, 0.2);
+  color: #f56565;
+  border: 2px solid #f56565;
+}
+
+.stepIconSpinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Step Content */
+.stepContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.stepDescription {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.stepStatus {
+  font-size: 11px;
+  color: #667eea;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Steps Progress */
+.stepsProgress {
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progressText {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.progressBar {
+  height: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #48bb78 100%);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Thought Stream Panel */
+.thoughtStream {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  overflow: hidden;
+}
+
+.thoughtCount {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 500;
+}
+
+/* Empty Thoughts State */
+.emptyThoughts {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.emptyThoughtsIcon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.3;
+}
+
+.emptyThoughtsText {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 4px;
+}
+
+.emptyThoughtsSubtext {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Thoughts List */
+.thoughtsList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.thoughtsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.thoughtsList::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.thoughtsList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.thoughtsList::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Thought Item */
+.thoughtItem {
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.thoughtItem:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Thought Types */
+.thoughtTypeObservation {
+  border-left-color: #667eea;
+}
+
+.thoughtTypeAction {
+  border-left-color: #48bb78;
+}
+
+.thoughtTypeAnalysis {
+  border-left-color: #9f7aea;
+}
+
+.thoughtTypeDecision {
+  border-left-color: #edf243;
+}
+
+.thoughtTypeError {
+  border-left-color: #f56565;
+  background: rgba(245, 101, 101, 0.05);
+}
+
+/* Thought Header */
+.thoughtHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.thoughtIcon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.thoughtType {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.thoughtTime {
+  margin-left: auto;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: monospace;
+}
+
+/* Thought Message */
+.thoughtMessage {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .mainView {
+    flex: 0 0 65%;
+  }
+
+  .sidebar {
+    flex: 0 0 calc(35% - 24px);
+  }
+}
+
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .mainView,
+  .sidebar {
+    flex: 1 1 auto;
+  }
+
+  .scenarioSteps,
+  .thoughtStream {
+    max-height: none;
+    min-height: 300px;
+  }
+}
